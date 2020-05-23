@@ -4,17 +4,17 @@ Given a string, find the length of the longest **substring** without repeating c
 
 ## 输入输出示例
 
-> Input: "abcabcbb"
-> Output: 3 
+> Input: "abcabcbb"  
+> Output: 3  
 > Explanation: The answer is "abc", with the length of 3. 
 
-> Input: "bbbbb"
-> Output: 1
+> Input: "bbbbb"  
+> Output: 1  
 > Explanation: The answer is "b", with the length of 1.
 
-> Input: "pwwkew"
-> Output: 3
-> Explanation: The answer is "wke", with the length of 3. 
+> Input: "pwwkew"  
+> Output: 3  
+> Explanation: The answer is "wke", with the length of 3.  
 >              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
 ## 解题思路
@@ -45,8 +45,8 @@ var lengthOfLongestSubstring = function (s) {
 
 出错了，错误样例：
 
-> Input:    " "
-> Output:   0
+> Input:    " "  
+> Output:   0  
 > Expected: 1
 
 又忘记处理特殊情况了。
@@ -129,26 +129,44 @@ var lengthOfLongestSubstring = function (s) {
 
 举个例子：
 
-> Input:  "pwwkew"
+> Input:  "pwwkew"  
 > Output: 3
 
-第一次，`map[p]`为空，将其加入map，map为`{p: 0}`，`j++`来考察下一个，`max= Math.max(0, 1-0)=1`(比较`""`和`"pw"`)；
+第一次：
+- `map[p]`为空，将其加入map，map为`{p: 0}`
+- `j++`来考察下一个
+- `max= Math.max(0, 1-0)=1`(比较`""`和`"pw"`)
 
-第二次，`map[w]`为空，将其加入map，map为`{p: 0, w: 1}`，`j++`来考察下一个，`max= Math.max(1, 2-0)=2`(比较`"p"`和`"pw"`)；
+第二次：
+- `map[w]`为空，将其加入map，map为`{p: 0, w: 1}`
+- `j++`来考察下一个
+- `max= Math.max(1, 2-0)=2`(比较`"p"`和`"pw"`)
 
-第三次，`map[w]`非空，将`i`更新为上次`w`出现的下一位置即`2`，更新map为`{p: 0, w: 2}`，`j++`来考察下一个，`max= Math.max(2, 3-2)=2`(比较`"pw"`和`"w"`)；
+第三次：
+- `map[w]`非空，将`i`更新为上次`w`出现的下一位置即`2`，更新map为`{p: 0, w: 2}`
+- `j++`来考察下一个
+- `max= Math.max(2, 3-2)=2`(比较`"pw"`和`"w"`)
 
-第四次，`map[k]`为空，将其加入map，map为`{p: 0, w: 2, k: 3}`，`j++`来考察下一个，`max= Math.max(2, 4-2)=2`(比较`"pw"`和`"wk"`)；
+第四次：
+- `map[k]`为空，将其加入map，map为`{p: 0, w: 2, k: 3}`
+- `j++`来考察下一个
+- `max= Math.max(2, 4-2)=2`(比较`"pw"`和`"wk"`)；
 
-第五次，`map[e]`为空，将其加入map，map为`{p: 0, w: 2, k: 3, e: 4}`，`j++`来考察下一个，`max= Math.max(2, 5-2)=3`(比较`"pw"`/`"wk"`和`"wke"`)；
+第五次：
+- `map[e]`为空，将其加入map，map为`{p: 0, w: 2, k: 3, e: 4}`
+- `j++`来考察下一个
+- `max= Math.max(2, 5-2)=3`(比较`"pw"`/`"wk"`和`"wke"`)；
 
-第六次，`map[w]`非空，将`i`更新为上次`w`出现的下一位置即`3`，更新map为`{p: 0, w: 5}`，`j++`来考察下一个，`max= Math.max(3, 6-3)=3`(比较`"wke"`和`"kew"`)。
+第六次：
+- `map[w]`非空，将`i`更新为上次`w`出现的下一位置即`3`，更新map为`{p: 0, w: 5}`
+- `j++`来考察下一个
+- `max= Math.max(3, 6-3)=3`(比较`"wke"`和`"kew"`)。
 
 差不多就是这个流程。
 不过还是答案错误了，错误样例：
 
-> Input:    "abba"
-> Output:   3
+> Input:    "abba"  
+> Output:   3  
 > Expected: 2
 
 ### v4: Accepted
