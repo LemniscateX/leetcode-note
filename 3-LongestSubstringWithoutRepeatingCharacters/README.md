@@ -150,17 +150,17 @@ var lengthOfLongestSubstring = function (s) {
 第四次：
 - `map[k]`为空，将其加入map，map为`{p: 0, w: 2, k: 3}`
 - `j++`来考察下一个
-- `max= Math.max(2, 4-2)=2`(比较`"pw"`和`"wk"`)；
+- `max= Math.max(2, 4-2)=2`(比较`"pw"`和`"wk"`)
 
 第五次：
 - `map[e]`为空，将其加入map，map为`{p: 0, w: 2, k: 3, e: 4}`
 - `j++`来考察下一个
-- `max= Math.max(2, 5-2)=3`(比较`"pw"`/`"wk"`和`"wke"`)；
+- `max= Math.max(2, 5-2)=3`(比较`"pw"`/`"wk"`和`"wke"`)
 
 第六次：
 - `map[w]`非空，将`i`更新为上次`w`出现的下一位置即`3`，更新map为`{p: 0, w: 5}`
 - `j++`来考察下一个
-- `max= Math.max(3, 6-3)=3`(比较`"wke"`和`"kew"`)。
+- `max= Math.max(3, 6-3)=3`(比较`"wke"`和`"kew"`)
 
 差不多就是这个流程。
 不过还是答案错误了，错误样例：
