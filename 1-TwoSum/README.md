@@ -1,12 +1,12 @@
 # Two Sum
 ## 题目描述
-Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
+Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.  
 You may assume that each input would have **exactly** one solution, and you may not use the same element twice.
 
 ## 输入输出示例
 
-> Given nums = [2, 7, 11, 15], target = 9,
-> Because nums[0] + nums[1] = 2 + 7 = 9,
+> Given nums = [2, 7, 11, 15], target = 9,  
+> Because nums[0] + nums[1] = 2 + 7 = 9,  
 > return [0, 1].
 
 ## 解题思路
@@ -78,9 +78,9 @@ var twoSum = function (nums, target) {
 
 在进行了非常不充分的测试之后提交，发现有错误样例：
 
-> Input:    [3,3]
->           6
-> Output:   [1, 1]
+> Input:    [3,3]  
+>           6  
+> Output:   [1, 1]  
 > Expected: [0,1]
 
 说明没有考虑到数值重复的情况，因此需要在map部分进行修改，记录重复数据的所有下标值。
@@ -132,6 +132,7 @@ var twoSum = function (nums, target) {
 
 ### v4: Accepted
 上面的代码中，有两次循环：一次是用map来存储`数值:下标`对、一次是左右指针遍历，还有一次排序。但其实可以将两次减少为一次，也不再需要排序。
+
 对于两次循环，优化方法是边遍历边更新map；对于一次排序，优化方法是不依靠数值大小来搜索，思路在于，我们不需要一个个遍历地去找互补项，而是可以直接访问map，在map中看是否有自己的互补项，这样就可以将复杂度从O(n)降为O(1)了。
 
 - 当`map[cur]`为空，说明还没找到自己的互补项，那就把自己加入map
@@ -159,19 +160,19 @@ var twoSum = function (nums, target) {
 
 举个例子：
 
-> Input:  [2,3,4]
->         6
+> Input:  [2,3,4]  
+>         6  
 > Output: [0, 2]
 
-第一次，`map[6-2]`为空，map中添加项，map为`{4: 0}`；
-第二次，`map[6-3]`为空，map中添加项，map为`{4: 0, 3: 1}`；
+第一次，`map[6-2]`为空，map中添加项，map为`{4: 0}`；  
+第二次，`map[6-3]`为空，map中添加项，map为`{4: 0, 3: 1}`；  
 第三次，`map[6-4]`非空，说明有4的互补项，把该值取出，与当前下标一同输出即可。
 
-> Input:    [3,3]
->           6
+> Input:    [3,3]  
+>           6  
 > Output:   [0, 1]
 
-第一次，`map[6-3]`为空，map中添加项，map为`{3: 0}`；
+第一次，`map[6-3]`为空，map中添加项，map为`{3: 0}`；  
 第二次，`map[6-3]`非空，说明有3的互补项，把该值取出，与当前下标一同输出即可。
 
 果然，less is more!
