@@ -135,7 +135,7 @@ var lengthOfLongestSubstring = function (s) {
 第一次：
 - `map[p]`为空，将其加入map，map为`{p: 0}`
 - `j++`来考察下一个
-- `max= Math.max(0, 1-0)=1`(比较`""`和`"pw"`)
+- `max= Math.max(0, 1-0)=1`(比较`""`和`"p"`)
 
 第二次：
 - `map[w]`为空，将其加入map，map为`{p: 0, w: 1}`
